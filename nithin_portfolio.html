@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nithin Sebastian — Photography</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Overpass+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #0a0a0a;
+    --paper: #f4f0e8;
+    --ash: #1a1a1a;
+    --fog: #2e2e2e;
+    --mist: #4a4a4a;
+    --smoke: #888;
+    --silver: #bbb;
+    --gold: #c9a84c;
+    --gold-dim: #7a5e28;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --mono: 'Overpass Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--serif);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 3rem;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.95) 0%, transparent 100%);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--silver);
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--smoke);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--paper); }
+
+  /* HERO */
+  #hero {
+    height: 100vh;
+    position: relative;
+    display: flex; align-items: flex-end;
+    padding: 0 3rem 5rem;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 30%, rgba(30,25,15,0.5) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(15,20,30,0.4) 0%, transparent 50%),
+      linear-gradient(160deg, rgba(26,31,20,0.7) 0%, rgba(13,18,24,0.55) 35%, rgba(10,10,10,0.35) 70%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+  .hero-horizon {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 45%;
+    background: linear-gradient(to top,
+      rgba(5,8,12,0.95) 0%,
+      rgba(8,12,18,0.7) 40%,
+      transparent 100%);
+  }
+  .hero-mountains {
+    position: absolute;
+    bottom: 28%; left: 0; right: 0;
+    height: 200px;
+    opacity: 0.5;
+  }
+  .hero-mountains svg { width: 100%; height: 100%; }
+
+  .hero-photo {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.7;
+  }
+
+  .hero-stars { position: absolute; inset: 0; }
+  .star {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: var(--paper);
+    border-radius: 50%;
+    animation: twinkle var(--d, 3s) ease-in-out infinite;
+    opacity: var(--o, 0.4);
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: var(--o, 0.4); }
+    50% { opacity: calc(var(--o, 0.4) * 0.3); }
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 700px;
+    animation: fadeUp 1.4s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .hero-title {
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    color: var(--paper);
+  }
+  .hero-title em { font-style: italic; color: var(--silver); }
+  .hero-sub {
+    font-size: 16px;
+    color: var(--smoke);
+    line-height: 1.7;
+    max-width: 420px;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--paper);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-dim);
+    padding-bottom: 4px;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .hero-cta:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-cta::after { content: '→'; font-size: 14px; }
+
+  .hero-coords {
+    position: absolute;
+    right: 3rem; bottom: 5rem;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--mist);
+    text-align: right;
+    line-height: 1.8;
+    z-index: 2;
+  }
+
+  /* SECTION SHARED */
+  section { padding: 7rem 3rem; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-size: clamp(36px, 4vw, 58px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 3rem;
+    color: var(--paper);
+  }
+  .section-title em { font-style: italic; color: var(--silver); }
+  .divider {
+    width: 48px; height: 1px;
+    background: var(--gold-dim);
+    margin-bottom: 3rem;
+  }
+
+  /* GALLERY SHARED */
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--fog);
+  }
+  .photo-placeholder {
+    width: 100%; height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .gallery-item:hover .photo-placeholder { transform: scale(1.04); }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    display: flex; align-items: flex-end; padding: 1.5rem;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .overlay-text {
+    font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.3em; color: var(--silver); text-transform: uppercase;
+  }
+
+  /* LANDSCAPE */
+  #landscape { background: var(--ash); }
+  .landscape-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 240px;
+    grid-auto-flow: dense;
+    gap: 4px;
+  }
+  .landscape-grid .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .landscape-grid .gallery-item:nth-child(8) { grid-column: span 2; }
+
+  /* WILDLIFE */
+  #wildlife { background: var(--ink); }
+  .wildlife-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 380px;
+    gap: 4px;
+  }
+
+  /* PORTRAITS */
+  #portraits { background: var(--ash); }
+  .portraits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+  .portraits-grid .gallery-item { min-height: 560px; }
+
+  /* ABOUT */
+  #about {
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .about-visual { position: relative; height: 560px; }
+  .about-portrait {
+    position: absolute; top: 0; left: 0;
+    width: 78%; height: 88%;
+    background: var(--fog);
+    overflow: hidden;
+  }
+  .about-portrait-inner { width: 100%; height: 100%; }
+  .about-accent {
+    position: absolute; bottom: 0; right: 0;
+    width: 55%; height: 50%;
+    border: 1px solid var(--gold-dim);
+  }
+  .about-tag {
+    position: absolute; top: 2rem; right: -1rem;
+    background: var(--ash);
+    border: 1px solid var(--fog);
+    padding: 1rem 1.5rem;
+    font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.25em; color: var(--smoke);
+    text-transform: uppercase; line-height: 1.8;
+  }
+  .about-text { font-size: 17px; line-height: 1.85; color: var(--silver); margin-bottom: 1.5rem; }
+  .about-text strong { font-weight: 400; color: var(--paper); }
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    margin-top: 3rem; padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .stat-num {
+    font-size: 42px; font-weight: 300;
+    color: var(--paper); letter-spacing: -0.02em; line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.3em; color: var(--smoke); text-transform: uppercase; }
+
+  /* CONTACT */
+  #contact {
+    background: var(--ash);
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .contact-intro { font-size: 17px; line-height: 1.85; color: var(--silver); margin-bottom: 2rem; }
+  .contact-detail { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem; }
+  .contact-detail-label {
+    font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); min-width: 80px; padding-top: 2px;
+  }
+  .contact-detail-val { font-size: 16px; color: var(--silver); line-height: 1.5; }
+  .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .form-label {
+    font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--smoke);
+  }
+  .form-input, .form-textarea {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--paper);
+    padding: 0.9rem 1rem;
+    font-family: var(--serif); font-size: 15px; font-weight: 300;
+    outline: none;
+    transition: border-color 0.25s;
+    resize: none;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--gold-dim); }
+  .form-textarea { height: 120px; }
+  .submit-btn {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: none;
+    border: 1px solid var(--gold-dim);
+    color: var(--paper);
+    padding: 1rem 2.5rem;
+    font-family: var(--mono); font-size: 10px;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s;
+    align-self: flex-start;
+  }
+  .submit-btn:hover { background: rgba(201,168,76,0.08); border-color: var(--gold); }
+  .submit-btn::after { content: '→'; font-size: 14px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    padding: 2rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  footer p { font-family: var(--mono); font-size: 9px; letter-spacing: 0.25em; color: var(--mist); }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: rgba(0,0,0,0.95);
+    align-items: center; justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox-inner { position: relative; max-width: 90vw; max-height: 90vh; }
+  .lightbox-inner img { max-width: 90vw; max-height: 80vh; display: block; object-fit: contain; }
+  .lightbox-close {
+    position: absolute; top: -2.5rem; right: 0;
+    font-family: var(--mono); font-size: 9px; letter-spacing: 0.3em;
+    color: var(--smoke); background: none; border: none;
+    cursor: pointer; text-transform: uppercase;
+  }
+
+  /* SCROLL ANIMATION */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Nithin Sebastian</span>
+  <ul class="nav-links">
+    <li><a href="#landscape">Landscape</a></li>
+    <li><a href="#wildlife">Wildlife</a></li>
+    <li><a href="#portraits">Portraits</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <img class="hero-photo" src="images/IMG_7932.JPG" alt="">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-stars" id="stars"></div>
+  <div class="hero-mountains">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="0,200 120,80 220,130 350,40 480,100 580,20 700,90 820,50 920,110 1050,30 1180,95 1310,55 1440,80 1440,200" fill="#1a1f14" opacity="0.9"/>
+      <polygon points="0,200 80,120 160,150 280,90 400,140 500,70 620,120 720,85 840,130 960,60 1100,110 1200,80 1340,120 1440,90 1440,200" fill="#0f1610" opacity="0.7"/>
+    </svg>
+  </div>
+  <div class="hero-horizon"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Travel &amp; Nature Photography</p>
+    <h1 class="hero-title">Where Light<br><em>Meets</em> Silence</h1>
+    <p class="hero-sub">Capturing the quiet drama of the natural world — from alpine ridgelines at first light to coastal storms at dusk.</p>
+    <a href="#landscape" class="hero-cta">View the work</a>
+  </div>
+  <div class="hero-coords">
+    63°27'N · 19°01'W<br>
+    Iceland Highlands<br>
+    2024
+  </div>
+</section>
+
+<!-- LANDSCAPE -->
+<section id="landscape">
+  <p class="section-label reveal">Landscape</p>
+  <h2 class="section-title reveal">Scenes &amp; <em>Scenery</em></h2>
+  <div class="landscape-grid">
+
+    <div class="gallery-item reveal" onclick="openLightbox(0)">
+      <img class="photo-placeholder" src="images/IMG_7637.JPG" alt="Peyto Lake, Banff">
+      <div class="gallery-overlay"><span class="overlay-text">Peyto Lake · Banff · Canada</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(1)">
+      <img class="photo-placeholder" src="images/IMG_7029.JPG" alt="Porto Sunset">
+      <div class="gallery-overlay"><span class="overlay-text">Douro River · Porto · Portugal</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(2)">
+      <img class="photo-placeholder" src="images/IMG_7932.JPG" alt="Bow Lake">
+      <div class="gallery-overlay"><span class="overlay-text">Bow Lake · Banff · Canada</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(3)">
+      <img class="photo-placeholder" src="images/IMG_6436.jpg" alt="Tokyo Shinjuku at Night">
+      <div class="gallery-overlay"><span class="overlay-text">Shinjuku · Tokyo · Japan</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(4)">
+      <img class="photo-placeholder" src="images/IMG_3886.JPG" alt="Golden Gate Bridge">
+      <div class="gallery-overlay"><span class="overlay-text">Golden Gate · San Francisco</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(5)">
+      <img class="photo-placeholder" src="images/IMG_6710.JPG" alt="Osaka Castle">
+      <div class="gallery-overlay"><span class="overlay-text">Osaka Castle · Japan</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(6)">
+      <img class="photo-placeholder" src="images/IMG_7734.JPG" alt="Emerald Lake">
+      <div class="gallery-overlay"><span class="overlay-text">Emerald Lake · Yoho · Canada</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(7)">
+      <img class="photo-placeholder" src="images/IMG_3872.JPG" alt="Bay Bridge Sunset">
+      <div class="gallery-overlay"><span class="overlay-text">Bay Bridge · San Francisco</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(8)">
+      <img class="photo-placeholder" src="images/IMG_4070.JPG" alt="Redwood Forest">
+      <div class="gallery-overlay"><span class="overlay-text">Redwoods · California · USA</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(9)">
+      <img class="photo-placeholder" src="images/IMG_3144.JPG" alt="NYC Skyline at Night">
+      <div class="gallery-overlay"><span class="overlay-text">Skyline · New York · USA</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(10)">
+      <img class="photo-placeholder" src="images/IMG_7215.JPG" alt="Moorish Castle Sintra">
+      <div class="gallery-overlay"><span class="overlay-text">Moorish Castle · Sintra · Portugal</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(11)">
+      <img class="photo-placeholder" src="images/IMG_6960.JPG" alt="Sanctuary of Fatima">
+      <div class="gallery-overlay"><span class="overlay-text">Sanctuary of Fátima · Portugal</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(12)">
+      <img class="photo-placeholder" src="images/IMG_7448.JPG" alt="Lisbon at Dusk">
+      <div class="gallery-overlay"><span class="overlay-text">Lisbon at Dusk · Portugal</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(13)">
+      <img class="photo-placeholder" src="images/IMG_5425.JPG" alt="Total Solar Eclipse">
+      <div class="gallery-overlay"><span class="overlay-text">Total Eclipse · 2024</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(14)">
+      <img class="photo-placeholder" src="images/IMG_7392.JPG" alt="Jeronimos Monastery Lisbon">
+      <div class="gallery-overlay"><span class="overlay-text">Jerónimos Monastery · Lisbon</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(15)">
+      <img class="photo-placeholder" src="images/IMG_7230.JPG" alt="Sintra Castle Aerial">
+      <div class="gallery-overlay"><span class="overlay-text">Castle of the Moors · Sintra</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(16)">
+      <img class="photo-placeholder" src="images/IMG_4892.JPG" alt="Autumn Trees">
+      <div class="gallery-overlay"><span class="overlay-text">Autumn · USA</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(17)">
+      <img class="photo-placeholder" src="images/IMG_8014.JPG" alt="El Morro San Juan Puerto Rico">
+      <div class="gallery-overlay"><span class="overlay-text">El Morro · San Juan · Puerto Rico</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(18)">
+      <img class="photo-placeholder" src="images/IMG_3276.JPG" alt="Lower Manhattan">
+      <div class="gallery-overlay"><span class="overlay-text">Lower Manhattan · New York</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(19)">
+      <img class="photo-placeholder" src="images/IMG_8658.JPG" alt="Caribbean Coast Puerto Rico">
+      <div class="gallery-overlay"><span class="overlay-text">Caribbean Coast · Puerto Rico</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WILDLIFE -->
+<section id="wildlife">
+  <p class="section-label reveal">Wildlife</p>
+  <h2 class="section-title reveal">Wild <em>Encounters</em></h2>
+  <div class="wildlife-grid">
+
+    <div class="gallery-item reveal" onclick="openLightbox(20)">
+      <img class="photo-placeholder" src="images/IMG_7571.JPG" alt="Bighorn Sheep Canadian Rockies">
+      <div class="gallery-overlay"><span class="overlay-text">Bighorn Sheep · Canadian Rockies</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(21)">
+      <img class="photo-placeholder" src="images/IMG_2837.JPG" alt="Ground Squirrel Rocky Mountains">
+      <div class="gallery-overlay"><span class="overlay-text">Ground Squirrel · Rocky Mountains</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(22)">
+      <img class="photo-placeholder" src="images/IMG_2876.JPG" alt="Mourning Dove">
+      <div class="gallery-overlay"><span class="overlay-text">Mourning Dove · USA</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(23)">
+      <img class="photo-placeholder" src="images/IMG_8030.JPG" alt="Texas Longhorns Fort Worth">
+      <div class="gallery-overlay"><span class="overlay-text">Texas Longhorns · Fort Worth</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PORTRAITS -->
+<section id="portraits">
+  <p class="section-label reveal">Portraits</p>
+  <h2 class="section-title reveal">People &amp; <em>Moments</em></h2>
+  <div class="portraits-grid">
+
+    <div class="gallery-item reveal" onclick="openLightbox(24)">
+      <img class="photo-placeholder" src="images/IMG_6791.JPG" alt="Sumo Wrestling Final Round Japan">
+      <div class="gallery-overlay"><span class="overlay-text">Sumo · Final Round · Japan</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual">
+    <div class="about-portrait">
+      <img class="about-portrait-inner" src="images/about me.JPG" alt="Nithin Sebastian" style="object-fit: cover;">
+    </div>
+    <div class="about-tag">Based in<br>Reykjavik, IS<br>Available worldwide</div>
+  </div>
+  <div class="about-content">
+    <p class="section-label reveal">About</p>
+    <h2 class="section-title reveal">The Eye<br><em>Behind the Lens</em></h2>
+    <div class="divider"></div>
+    <p class="about-text reveal">I'm <strong>Nithin Sebastian</strong>, a landscape and nature photographer drawn to the edges of the world — places where the land is still untamed, where weather makes and breaks a scene in minutes, and where patience is the only real technique.</p>
+    <p class="about-text reveal">My work is rooted in long exposures, pre-dawn hikes, and the discipline of waiting for the light that changes everything. I work primarily with medium format digital, and occasionally with large format film when the scene demands permanence.</p>
+    <p class="about-text reveal">Available for <strong>editorial commissions</strong>, <strong>fine art prints</strong>, and <strong>licensed image use</strong>.</p>
+    <div class="about-stats">
+      <div>
+        <div class="stat-num">14+</div>
+        <div class="stat-label">Years shooting</div>
+      </div>
+      <div>
+        <div class="stat-num">38</div>
+        <div class="stat-label">Countries visited</div>
+      </div>
+      <div>
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Publications</div>
+      </div>
+      <div>
+        <div class="stat-num">6</div>
+        <div class="stat-label">Continents covered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div>
+    <p class="section-label reveal">Get in touch</p>
+    <h2 class="section-title reveal">Let's Make<br><em>Something</em></h2>
+    <div class="divider"></div>
+    <p class="contact-intro reveal">Whether you're looking for a commissioned landscape series, print licensing, or just want to talk about a location you've been dreaming about — I'd love to hear from you.</p>
+    <div class="contact-detail">
+      <span class="contact-detail-label">Email</span>
+      <span class="contact-detail-val">nitman846@gmail.com</span>
+    </div>
+    <div class="contact-detail">
+      <span class="contact-detail-label">Instagram</span>
+      <span class="contact-detail-val">@sebis_cam</span>
+    </div>
+    <div class="contact-detail">
+      <span class="contact-detail-label">Response</span>
+      <span class="contact-detail-val">Within 48 hours</span>
+    </div>
+  </div>
+  <div>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label class="form-label" for="name">Name</label>
+        <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="email">Email</label>
+        <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="type">Enquiry type</label>
+        <select id="type" name="type" class="form-input" style="cursor:pointer; appearance:none; background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 fill=%22%23888%22 viewBox=%220 0 16 16%22><path d=%22M8 10.5L3 5.5h10z%22/></svg>'); background-repeat:no-repeat; background-position: right 1rem center; background-size:12px; background-color: rgba(255,255,255,0.03);">
+          <option value="">Select type</option>
+          <option>Editorial commission</option>
+          <option>Fine art print</option>
+          <option>Image licensing</option>
+          <option>Workshop</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="message">Message</label>
+        <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project..." required></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send enquiry</button>
+      <p id="form-confirm" style="display:none; font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--gold); margin-top: 0.5rem;">Message sent — I'll be in touch soon.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Nithin Sebastian Photography</p>
+  <p>All images copyright Nithin Sebastian. All rights reserved.</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-inner" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()">Close ✕</button>
+    <div id="lightbox-content"></div>
+  </div>
+</div>
+
+<script>
+  // ─── Stars ───────────────────────────────────────────────────────────
+  const starsEl = document.getElementById('stars');
+  for (let i = 0; i < 60; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 70 + '%';
+    const o = (Math.random() * 0.5 + 0.2).toFixed(2);
+    s.style.setProperty('--o', o);
+    s.style.setProperty('--d', (Math.random() * 3 + 2).toFixed(1) + 's');
+    s.style.animationDelay = (Math.random() * 3).toFixed(1) + 's';
+    starsEl.appendChild(s);
+  }
+
+  // ─── Scroll reveal ────────────────────────────────────────────────────
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ─── Lightbox ────────────────────────────────────────────────────────
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  const captions = [
+    'Peyto Lake · Banff · Canada',
+    'Douro River · Porto · Portugal',
+    'Bow Lake · Banff · Canada',
+    'Shinjuku · Tokyo · Japan',
+    'Golden Gate · San Francisco',
+    'Osaka Castle · Japan',
+    'Emerald Lake · Yoho · Canada',
+    'Bay Bridge · San Francisco',
+    'Redwoods · California · USA',
+    'Skyline · New York · USA',
+    'Moorish Castle · Sintra · Portugal',
+    'Sanctuary of Fátima · Portugal',
+    'Lisbon at Dusk · Portugal',
+    'Total Eclipse · 2024',
+    'Jerónimos Monastery · Lisbon',
+    'Castle of the Moors · Sintra',
+    'Autumn · USA',
+    'El Morro · San Juan · Puerto Rico',
+    'Lower Manhattan · New York',
+    'Caribbean Coast · Puerto Rico',
+    'Bighorn Sheep · Canadian Rockies',
+    'Ground Squirrel · Rocky Mountains',
+    'Mourning Dove · USA',
+    'Texas Longhorns · Fort Worth',
+    'Sumo · Final Round · Japan'
+  ];
+
+  function openLightbox(i) {
+    const img = galleryItems[i].querySelector('img').cloneNode(true);
+    img.style.maxWidth = '90vw';
+    img.style.maxHeight = '80vh';
+    img.style.objectFit = 'contain';
+    img.removeAttribute('class');
+    const lb = document.getElementById('lightbox-content');
+    lb.innerHTML = '';
+    lb.appendChild(img);
+    const cap = document.createElement('p');
+    cap.style.cssText = 'font-family: var(--mono); font-size: 9px; letter-spacing: 0.3em; color: var(--smoke); text-transform: uppercase; margin-top: 1.5rem; text-align: center;';
+    cap.textContent = captions[i];
+    lb.appendChild(cap);
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // ─── Contact form ─────────────────────────────────────────────────────
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('.submit-btn');
+    const confirm = document.getElementById('form-confirm');
+
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch('/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name.value,
+          email: form.email.value,
+          type: form.type.value,
+          message: form.message.value
+        })
+      });
+
+      if (res.ok) {
+        confirm.style.display = 'block';
+        form.reset();
+      } else {
+        alert('Something went wrong — please try again.');
+      }
+    } catch {
+      alert('Could not reach the server — make sure it is running.');
+    } finally {
+      btn.textContent = 'Send enquiry';
+      btn.disabled = false;
+    }
+  }
+</script>
+</body>
+</html>
