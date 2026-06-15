@@ -402,6 +402,76 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* ── Mobile ──────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    section { padding: 4rem 1.2rem; }
+
+    /* Nav */
+    .nav-links { display: none; }
+    nav { padding: 0 1.2rem; }
+
+    /* Hero */
+    #hero { padding: 0 1.2rem; }
+    .hero-content { padding-bottom: 3rem; }
+    .hero-sub { font-size: 14px; max-width: 100%; }
+    .hero-coords { display: none; }
+
+    /* Landscape grid → 2 columns */
+    .landscape-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 180px;
+    }
+    .landscape-grid .gallery-item:nth-child(8) { grid-column: span 2; }
+
+    /* Wildlife grid → 2 columns */
+    .wildlife-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 260px;
+    }
+    .wildlife-grid .gallery-item:nth-child(1) { grid-column: span 2; }
+    .wildlife-grid .gallery-item:nth-child(2) { grid-column: span 2; }
+    .wildlife-grid .gallery-item:nth-child(3) { grid-column: span 1; }
+    .wildlife-grid .gallery-item:nth-child(4) { grid-column: span 1; }
+    .wildlife-grid .gallery-item:nth-child(5) { grid-column: span 2; }
+    .wildlife-grid .gallery-item:nth-child(6) { grid-column: span 1; }
+    .wildlife-grid .gallery-item:nth-child(7) { grid-column: span 1; }
+
+    /* Portraits grid → 1 column */
+    .portraits-grid {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 400px;
+    }
+
+    /* About → single column */
+    #about { grid-template-columns: 1fr; }
+    .about-visual { height: 380px; }
+
+    /* Lightbox */
+    .lightbox-caption { font-size: 9px; }
+  }
+
+  /* ── Tablet ───────────────────────────────────────────── */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    section { padding: 5rem 2rem; }
+
+    .landscape-grid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 200px;
+    }
+
+    .wildlife-grid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 300px;
+    }
+    .wildlife-grid .gallery-item:nth-child(1) { grid-column: span 2; }
+    .wildlife-grid .gallery-item:nth-child(2) { grid-column: span 1; }
+    .wildlife-grid .gallery-item:nth-child(3) { grid-column: span 1; }
+    .wildlife-grid .gallery-item:nth-child(4) { grid-column: span 1; }
+    .wildlife-grid .gallery-item:nth-child(5) { grid-column: span 1; }
+    .wildlife-grid .gallery-item:nth-child(6) { grid-column: span 2; }
+    .wildlife-grid .gallery-item:nth-child(7) { grid-column: span 1; }
+  }
 </style>
 </head>
 <body>
