@@ -102,8 +102,10 @@
     width: 100%; height: 100%;
     object-fit: cover;
     z-index: 0;
-    opacity: 0.7;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
   }
+  .hero-photo.active { opacity: 0.7; }
 
   .hero-stars { position: absolute; inset: 0; }
   .star {
@@ -412,7 +414,12 @@
 
 <!-- HERO -->
 <section id="hero">
-  <img class="hero-photo" src="images/IMG_7932.JPG" alt="">
+  <img class="hero-photo active" src="images/IMG_7637.JPG" alt="">
+  <img class="hero-photo" src="images/IMG_0328.JPG" alt="">
+  <img class="hero-photo" src="images/EA000304-0A0F-43EE-9180-DE22E6CBF4FF.JPG" alt="">
+  <img class="hero-photo" src="images/IMG_6802.JPG" alt="">
+  <img class="hero-photo" src="images/IMG_7392.JPG" alt="">
+  <img class="hero-photo" src="images/IMG_7215.JPG" alt="">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
   <div class="hero-stars" id="stars"></div>
@@ -745,6 +752,15 @@
 </div>
 
 <script>
+  // ─── Hero slideshow ──────────────────────────────────────────────────
+  const heroSlides = document.querySelectorAll('.hero-photo');
+  let currentSlide = 0;
+  setInterval(() => {
+    heroSlides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % heroSlides.length;
+    heroSlides[currentSlide].classList.add('active');
+  }, 5000);
+
   // ─── Stars ───────────────────────────────────────────────────────────
   const starsEl = document.getElementById('stars');
   for (let i = 0; i < 60; i++) {
