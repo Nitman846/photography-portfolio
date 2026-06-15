@@ -24,19 +24,18 @@ const transporter = nodemailer.createTransport({
 });
 
 app.post('/contact', async (req, res) => {
-  const { name, email, type, message } = req.body;
+  const { name, email, message } = req.body;
 
   try {
     await transporter.sendMail({
       from: process.env.GMAIL_USER,
       to: process.env.GMAIL_USER,
       replyTo: email,
-      subject: `Portfolio enquiry: ${type || 'General'} — ${name}`,
+      subject: `Portfolio enquiry from ${name}`,
       html: `
         <h3>New enquiry from your photography portfolio</h3>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Type:</strong> ${type || 'Not specified'}</p>
         <p><strong>Message:</strong><br>${message}</p>
       `
     });

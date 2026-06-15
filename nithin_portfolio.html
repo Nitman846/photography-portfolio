@@ -885,10 +885,9 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          name: form.name.value,
-          email: form.email.value,
-          type: form.type.value,
-          message: form.message.value
+          name: form.elements['name'].value,
+          email: form.elements['email'].value,
+          message: form.elements['message'].value
         })
       });
 
