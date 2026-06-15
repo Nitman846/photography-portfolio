@@ -248,19 +248,24 @@
   #wildlife { background: var(--ink); }
   .wildlife-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-auto-rows: 380px;
     gap: 4px;
   }
+  .wildlife-grid .gallery-item:nth-child(1) { grid-column: span 3; }
+  .wildlife-grid .gallery-item:nth-child(2) { grid-column: span 3; }
+  .wildlife-grid .gallery-item:nth-child(3),
+  .wildlife-grid .gallery-item:nth-child(4),
+  .wildlife-grid .gallery-item:nth-child(5) { grid-column: span 2; }
 
   /* PORTRAITS */
   #portraits { background: var(--ash); }
   .portraits-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 480px;
     gap: 4px;
   }
-  .portraits-grid .gallery-item { min-height: 560px; }
 
   /* ABOUT */
   #about {
@@ -453,81 +458,141 @@
     </div>
 
     <div class="gallery-item reveal" onclick="openLightbox(4)">
+      <img class="photo-placeholder" src="images/IMG_6802.JPG" alt="Mount Fuji Japan">
+      <div class="gallery-overlay"><span class="overlay-text">Mount Fuji · Japan</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(5)">
       <img class="photo-placeholder" src="images/IMG_3886.JPG" alt="Golden Gate Bridge">
       <div class="gallery-overlay"><span class="overlay-text">Golden Gate · San Francisco</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(5)">
+    <div class="gallery-item reveal" onclick="openLightbox(6)">
       <img class="photo-placeholder" src="images/IMG_6710.JPG" alt="Osaka Castle">
       <div class="gallery-overlay"><span class="overlay-text">Osaka Castle · Japan</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(6)">
+    <div class="gallery-item reveal" onclick="openLightbox(7)">
+      <img class="photo-placeholder" src="images/IMG_6572.JPG" alt="Fushimi Inari Kyoto">
+      <div class="gallery-overlay"><span class="overlay-text">Fushimi Inari · Kyoto · Japan</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(8)">
+      <img class="photo-placeholder" src="images/IMG_5235.JPG" alt="Chicago River St Patricks Day">
+      <div class="gallery-overlay"><span class="overlay-text">Chicago River · St. Patrick's Day</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(9)">
       <img class="photo-placeholder" src="images/IMG_7734.JPG" alt="Emerald Lake">
       <div class="gallery-overlay"><span class="overlay-text">Emerald Lake · Yoho · Canada</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(7)">
+    <div class="gallery-item reveal" onclick="openLightbox(10)">
+      <img class="photo-placeholder" src="images/IMG_6396.JPG" alt="Shibuya Crossing Tokyo">
+      <div class="gallery-overlay"><span class="overlay-text">Shibuya Crossing · Tokyo · Japan</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(11)">
       <img class="photo-placeholder" src="images/IMG_3872.JPG" alt="Bay Bridge Sunset">
       <div class="gallery-overlay"><span class="overlay-text">Bay Bridge · San Francisco</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(8)">
+    <div class="gallery-item reveal" onclick="openLightbox(12)">
+      <img class="photo-placeholder" src="images/IMG_0260.JPG" alt="Chicago Skyline Golden Hour">
+      <div class="gallery-overlay"><span class="overlay-text">Chicago Skyline · Golden Hour</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(13)">
+      <img class="photo-placeholder" src="images/IMG_3727.JPG" alt="Historic Ship San Francisco Bay">
+      <div class="gallery-overlay"><span class="overlay-text">Historic Ship · San Francisco Bay</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(14)">
       <img class="photo-placeholder" src="images/IMG_4070.JPG" alt="Redwood Forest">
       <div class="gallery-overlay"><span class="overlay-text">Redwoods · California · USA</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(9)">
+    <div class="gallery-item reveal" onclick="openLightbox(15)">
       <img class="photo-placeholder" src="images/IMG_3144.JPG" alt="NYC Skyline at Night">
       <div class="gallery-overlay"><span class="overlay-text">Skyline · New York · USA</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(10)">
+    <div class="gallery-item reveal" onclick="openLightbox(16)">
+      <img class="photo-placeholder" src="images/IMG_6996.JPG" alt="Porto Riverfront">
+      <div class="gallery-overlay"><span class="overlay-text">Porto Riverfront · Portugal</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(17)">
       <img class="photo-placeholder" src="images/IMG_7215.JPG" alt="Moorish Castle Sintra">
       <div class="gallery-overlay"><span class="overlay-text">Moorish Castle · Sintra · Portugal</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(11)">
+    <div class="gallery-item reveal" onclick="openLightbox(18)">
+      <img class="photo-placeholder" src="images/IMG_0616.JPG" alt="Seattle and Mount Rainier">
+      <div class="gallery-overlay"><span class="overlay-text">Seattle + Mt. Rainier · Washington</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(19)">
+      <img class="photo-placeholder" src="images/IMG_6416.JPG" alt="Shinjuku Lantern Tokyo">
+      <div class="gallery-overlay"><span class="overlay-text">Shinjuku Lantern · Tokyo · Japan</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(20)">
       <img class="photo-placeholder" src="images/IMG_6960.JPG" alt="Sanctuary of Fatima">
       <div class="gallery-overlay"><span class="overlay-text">Sanctuary of Fátima · Portugal</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(12)">
+    <div class="gallery-item reveal" onclick="openLightbox(21)">
+      <img class="photo-placeholder" src="images/IMG_6526.JPG" alt="Cherry Blossoms Kyoto">
+      <div class="gallery-overlay"><span class="overlay-text">Cherry Blossoms · Kyoto · Japan</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(22)">
       <img class="photo-placeholder" src="images/IMG_7448.JPG" alt="Lisbon at Dusk">
       <div class="gallery-overlay"><span class="overlay-text">Lisbon at Dusk · Portugal</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(13)">
+    <div class="gallery-item reveal" onclick="openLightbox(23)">
+      <img class="photo-placeholder" src="images/IMG_0328.JPG" alt="Seattle Space Needle at Night">
+      <div class="gallery-overlay"><span class="overlay-text">Space Needle · Seattle · Washington</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(24)">
       <img class="photo-placeholder" src="images/IMG_5425.JPG" alt="Total Solar Eclipse">
       <div class="gallery-overlay"><span class="overlay-text">Total Eclipse · 2024</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(14)">
+    <div class="gallery-item reveal" onclick="openLightbox(25)">
+      <img class="photo-placeholder" src="images/EA000304-0A0F-43EE-9180-DE22E6CBF4FF.JPG" alt="Cloud Gate Chicago">
+      <div class="gallery-overlay"><span class="overlay-text">Cloud Gate · Chicago · Illinois</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(26)">
       <img class="photo-placeholder" src="images/IMG_7392.JPG" alt="Jeronimos Monastery Lisbon">
       <div class="gallery-overlay"><span class="overlay-text">Jerónimos Monastery · Lisbon</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(15)">
+    <div class="gallery-item reveal" onclick="openLightbox(27)">
       <img class="photo-placeholder" src="images/IMG_7230.JPG" alt="Sintra Castle Aerial">
       <div class="gallery-overlay"><span class="overlay-text">Castle of the Moors · Sintra</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(16)">
+    <div class="gallery-item reveal" onclick="openLightbox(28)">
       <img class="photo-placeholder" src="images/IMG_4892.JPG" alt="Autumn Trees">
       <div class="gallery-overlay"><span class="overlay-text">Autumn · USA</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(17)">
+    <div class="gallery-item reveal" onclick="openLightbox(29)">
       <img class="photo-placeholder" src="images/IMG_8014.JPG" alt="El Morro San Juan Puerto Rico">
       <div class="gallery-overlay"><span class="overlay-text">El Morro · San Juan · Puerto Rico</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(18)">
+    <div class="gallery-item reveal" onclick="openLightbox(30)">
       <img class="photo-placeholder" src="images/IMG_3276.JPG" alt="Lower Manhattan">
       <div class="gallery-overlay"><span class="overlay-text">Lower Manhattan · New York</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(19)">
+    <div class="gallery-item reveal" onclick="openLightbox(31)">
       <img class="photo-placeholder" src="images/IMG_8658.JPG" alt="Caribbean Coast Puerto Rico">
       <div class="gallery-overlay"><span class="overlay-text">Caribbean Coast · Puerto Rico</span></div>
     </div>
@@ -541,22 +606,27 @@
   <h2 class="section-title reveal">Wild <em>Encounters</em></h2>
   <div class="wildlife-grid">
 
-    <div class="gallery-item reveal" onclick="openLightbox(20)">
+    <div class="gallery-item reveal" onclick="openLightbox(32)">
       <img class="photo-placeholder" src="images/IMG_7571.JPG" alt="Bighorn Sheep Canadian Rockies">
       <div class="gallery-overlay"><span class="overlay-text">Bighorn Sheep · Canadian Rockies</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(21)">
+    <div class="gallery-item reveal" onclick="openLightbox(33)">
+      <img class="photo-placeholder" src="images/IMG_7056.JPG" alt="Peacock">
+      <div class="gallery-overlay"><span class="overlay-text">Peacock · Portugal</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(34)">
       <img class="photo-placeholder" src="images/IMG_2837.JPG" alt="Ground Squirrel Rocky Mountains">
       <div class="gallery-overlay"><span class="overlay-text">Ground Squirrel · Rocky Mountains</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(22)">
+    <div class="gallery-item reveal" onclick="openLightbox(35)">
       <img class="photo-placeholder" src="images/IMG_2876.JPG" alt="Mourning Dove">
       <div class="gallery-overlay"><span class="overlay-text">Mourning Dove · USA</span></div>
     </div>
 
-    <div class="gallery-item reveal" onclick="openLightbox(23)">
+    <div class="gallery-item reveal" onclick="openLightbox(36)">
       <img class="photo-placeholder" src="images/IMG_8030.JPG" alt="Texas Longhorns Fort Worth">
       <div class="gallery-overlay"><span class="overlay-text">Texas Longhorns · Fort Worth</span></div>
     </div>
@@ -570,9 +640,24 @@
   <h2 class="section-title reveal">People &amp; <em>Moments</em></h2>
   <div class="portraits-grid">
 
-    <div class="gallery-item reveal" onclick="openLightbox(24)">
+    <div class="gallery-item reveal" onclick="openLightbox(37)">
+      <img class="photo-placeholder" src="images/IMG_7088.JPG" alt="Street Portrait Lisbon Portugal">
+      <div class="gallery-overlay"><span class="overlay-text">Street Portrait · Lisbon · Portugal</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(38)">
       <img class="photo-placeholder" src="images/IMG_6791.JPG" alt="Sumo Wrestling Final Round Japan">
       <div class="gallery-overlay"><span class="overlay-text">Sumo · Final Round · Japan</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(39)">
+      <img class="photo-placeholder" src="images/IMG_3428.JPG" alt="Formal Evening">
+      <div class="gallery-overlay"><span class="overlay-text">Formal Evening · USA</span></div>
+    </div>
+
+    <div class="gallery-item reveal" onclick="openLightbox(40)">
+      <img class="photo-placeholder" src="images/IMG_3556.JPG" alt="Group Portrait Formal Evening">
+      <div class="gallery-overlay"><span class="overlay-text">Formal Evening · USA</span></div>
     </div>
 
   </div>
@@ -637,17 +722,6 @@
         <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com" required>
       </div>
       <div class="form-group">
-        <label class="form-label" for="type">Enquiry type</label>
-        <select id="type" name="type" class="form-input" style="cursor:pointer; appearance:none; background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 fill=%22%23888%22 viewBox=%220 0 16 16%22><path d=%22M8 10.5L3 5.5h10z%22/></svg>'); background-repeat:no-repeat; background-position: right 1rem center; background-size:12px; background-color: rgba(255,255,255,0.03);">
-          <option value="">Select type</option>
-          <option>Editorial commission</option>
-          <option>Fine art print</option>
-          <option>Image licensing</option>
-          <option>Workshop</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="form-group">
         <label class="form-label" for="message">Message</label>
         <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about your project..." required></textarea>
       </div>
@@ -698,16 +772,28 @@
     'Douro River · Porto · Portugal',
     'Bow Lake · Banff · Canada',
     'Shinjuku · Tokyo · Japan',
+    'Mount Fuji · Japan',
     'Golden Gate · San Francisco',
     'Osaka Castle · Japan',
+    'Fushimi Inari · Kyoto · Japan',
+    "Chicago River · St. Patrick's Day",
     'Emerald Lake · Yoho · Canada',
+    'Shibuya Crossing · Tokyo · Japan',
     'Bay Bridge · San Francisco',
+    'Chicago Skyline · Golden Hour',
+    'Historic Ship · San Francisco Bay',
     'Redwoods · California · USA',
     'Skyline · New York · USA',
+    'Porto Riverfront · Portugal',
     'Moorish Castle · Sintra · Portugal',
+    'Seattle + Mt. Rainier · Washington',
+    'Shinjuku Lantern · Tokyo · Japan',
     'Sanctuary of Fátima · Portugal',
+    'Cherry Blossoms · Kyoto · Japan',
     'Lisbon at Dusk · Portugal',
+    'Space Needle · Seattle · Washington',
     'Total Eclipse · 2024',
+    'Cloud Gate · Chicago · Illinois',
     'Jerónimos Monastery · Lisbon',
     'Castle of the Moors · Sintra',
     'Autumn · USA',
@@ -715,10 +801,14 @@
     'Lower Manhattan · New York',
     'Caribbean Coast · Puerto Rico',
     'Bighorn Sheep · Canadian Rockies',
+    'Peacock · Portugal',
     'Ground Squirrel · Rocky Mountains',
     'Mourning Dove · USA',
     'Texas Longhorns · Fort Worth',
-    'Sumo · Final Round · Japan'
+    'Street Portrait · Lisbon · Portugal',
+    'Sumo · Final Round · Japan',
+    'Formal Evening · USA',
+    'Formal Evening · USA'
   ];
 
   function openLightbox(i) {
