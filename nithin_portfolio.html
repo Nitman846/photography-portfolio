@@ -391,6 +391,17 @@
     color: var(--smoke); background: none; border: none;
     cursor: pointer; text-transform: uppercase;
   }
+  .lightbox-prev, .lightbox-next {
+    position: fixed; top: 50%; transform: translateY(-50%);
+    background: none; border: none; cursor: pointer;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+    color: var(--smoke); text-transform: uppercase; padding: 1rem;
+    transition: color 0.2s;
+    z-index: 1000;
+  }
+  .lightbox-prev:hover, .lightbox-next:hover { color: var(--paper); }
+  .lightbox-prev { left: 1.5rem; }
+  .lightbox-next { right: 1.5rem; }
 
   /* SCROLL ANIMATION */
   .reveal {
@@ -833,10 +844,12 @@
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-prev" onclick="event.stopPropagation(); shiftLightbox(-1)">← Prev</button>
   <div class="lightbox-inner" onclick="event.stopPropagation()">
     <button class="lightbox-close" onclick="closeLightbox()">Close ✕</button>
     <div id="lightbox-content"></div>
   </div>
+  <button class="lightbox-next" onclick="event.stopPropagation(); shiftLightbox(1)">Next →</button>
 </div>
 
 <script>
@@ -919,7 +932,10 @@
     'Formal Evening · USA'
   ];
 
+  let currentLightboxIndex = 0;
+
   function openLightbox(i) {
+    currentLightboxIndex = i;
     const img = galleryItems[i].querySelector('img').cloneNode(true);
     img.style.maxWidth = '90vw';
     img.style.maxHeight = '80vh';
@@ -936,12 +952,20 @@
     document.body.style.overflow = 'hidden';
   }
 
+  function shiftLightbox(dir) {
+    openLightbox((currentLightboxIndex + dir + galleryItems.length) % galleryItems.length);
+  }
+
   function closeLightbox() {
     document.getElementById('lightbox').classList.remove('open');
     document.body.style.overflow = '';
   }
 
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') shiftLightbox(1);
+    if (e.key === 'ArrowLeft') shiftLightbox(-1);
+  });
 
   // ─── Contact form ─────────────────────────────────────────────────────
   async function handleSubmit(e) {
